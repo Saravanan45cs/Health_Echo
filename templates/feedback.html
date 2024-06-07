@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Review</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background: url(static/drug.jpg) no-repeat center center fixed;
+            background-size: cover;
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 26px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        div {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-size: 16px;
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-weight: 700;
+            text-align: left;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: Georgia, serif;
+
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus, textarea:focus {
+            border-color: black;
+            outline: #333;
+        }
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        .radio-group {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .radio-group label {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #333;
+        }
+        button {
+            background-color: black;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 62px;
+            cursor: pointer;
+            font-size: 16px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            width: 40%;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        button:hover {
+            background-color: grey;
+            color: black;
+            transform: scale(1.05);
+        }
+        input::placeholder, textarea::placeholder {
+            color: #aaa;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to HealthEcho!!</h1>
+        <h1>Enter Your Feedback below</h1>
+        <form action="/enter_review" method="post">
+            <div>
+                <label for="drugName">Drug Name</label>
+                <input type="text" id="drugName" name="drug_name" placeholder="Enter drug name...">
+            </div>
+            <div>
+                <label for="review">Feedback </label>
+                <textarea id="review" name="review" placeholder="Enter your review..."></textarea>
+            </div>
+            <div>
+                <label for="rating">Rating </label>
+                <div class="radio-group">
+                    <label><input type="radio" id="rating1" name="rating" value="1"> 1</label>
+                    <label><input type="radio" id="rating2" name="rating" value="2"> 2</label>
+                    <label><input type="radio" id="rating3" name="rating" value="3"> 3</label>
+                    <label><input type="radio" id="rating4" name="rating" value="4"> 4</label>
+                    <label><input type="radio" id="rating5" name="rating" value="5"> 5</label>
+                    <label><input type="radio" id="rating6" name="rating" value="6"> 6</label>
+                    <label><input type="radio" id="rating7" name="rating" value="7"> 7</label>
+                    <label><input type="radio" id="rating8" name="rating" value="8"> 8</label>
+                    <label><input type="radio" id="rating9" name="rating" value="9"> 9</label>
+                    <label><input type="radio" id="rating10" name="rating" value="10"> 10</label>
+                </div>
+            </div>
+            <div>
+                <button type="submit">Submit Review</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

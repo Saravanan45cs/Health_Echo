@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Drug Sentiment Analysis</title>
+        <style>
+            body {
+            background-image: url('static/background_image.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            margin: 0; /* Remove default margin */
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+            .container {
+                max-width: 600px;
+                background-color: rgba(255, 255, 255, 0.5);
+                margin: 0 auto;
+                padding: 20px;
+                text-align:center;
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            button {
+                padding: 10px 20px;
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+            h1{
+                font-size: xx-large;
+                font-family: 'Trebuchet MS', 'Lucida Sans Unicode';
+                font-style:italic;
+                font-weight: 400;
+                color: blueviolet;
+            }
+            input{
+                padding: 7px 10px;
+                margin: 8px 0;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container" >
+            <h1>Drug Sentiment Analysis</h1>
+            <div class="form-group">
+                <label for="drugName">Choose a Drug:</label>
+                <input type="text" id="drugName" placeholder="Enter drug name...">
+            </div>
+            <button onclick="getSentiment()">Get Sentiment</button>
+            <br>
+            <br>
+            <div id="result"></div>
+            <br>
+            <br>
+            <button onclick="location.href='/enter_review'" style="background-color: green;">Enter Review</button>
+        </div>
+
+        <script>
+            function getSentiment() {
+    var drugName = document.getElementById('drugName').value;
+
+    // Make an AJAX request to the backend to get the sentiment score
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', `/get_sentiment?drug_name=${drugName}`, true);
+
+    xhr.onload = function() {
+        if (xhr.status >= 200 && xhr.status < 400) {
+            var data = JSON.parse(xhr.responseText);
+            if ('error' in data) {
+                document.getElementById('result').innerHTML = data.error;
+            } else {
+                let se = parseFloat(data.sentiment_score);
+                let num = se;
+                let res = Number(num.toFixed(2));
+
+                if (res > 0.80) {
+                    document.getElementById('result').innerHTML = "The sentiment towards " + drugName + " is overwhelmingly positive.";
+                }
+                else if(res>0.60 && res<=0.80) {
+                    document.getElementById('result').innerHTML = "The sentiment towards " + drugName + " is generally neutral";
+                }
+                else {
+                    document.getElementById('result').innerHTML = "The sentiment towards " + drugName + " is negative.";
+                }
+            }
+        } else {
+            console.error('Error fetching sentiment score:', xhr.statusText);
+        }
+    };
+
+    xhr.onerror = function() {
+        console.error('Request failed');
+    };
+
+    xhr.send();
+}
+
+        </script>
+    </body>
+    </html>
