@@ -9,7 +9,7 @@ def store_in_database(df):
         conn = mysql.connector.connect(
             host="localhost",
             user="root",  # Replace with your MySQL username
-            password="Saravanan007",  # Replace with your MySQL password
+            password="********",  # Replace with your MySQL password
             database="drug_reviews"
         )
 
